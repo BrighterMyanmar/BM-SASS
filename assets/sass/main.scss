@@ -1,0 +1,80 @@
+@use 'base';
+
+@import 'variables';
+@import 'mixins';
+@import 'inheritances';
+@import 'nav';
+
+h1{
+    color:$primary;
+    // background-color: $primary;
+    // background-color: lighten($primary,35)
+    // background-color: complement($primary);
+    // max-width:(30px + 50px + 100px);
+    // font-size:30px;
+    @include tQ("1400px","1024px"){
+        font-size:80px;
+        font-weight: bold;
+    }
+    @include tQ("1024px","768px"){
+        font-size:60px;
+    }
+    @include tQ("425px"){
+        font-size:20px;
+        font-weight: bold;
+    }
+}
+
+.card-section{
+    @extend %fixwrapper;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap:10px;
+
+    @include mQ("1024px"){
+        grid-template-columns: repeat(3,1fr);
+    }
+
+    @include mQ("768px"){
+        grid-template-columns: repeat(2,1fr);
+    }
+    @include mQ("425px"){
+        grid-template-columns: 1fr;
+    }
+}
+
+.card{
+    margin-top:20px;
+    .card-header{
+        padding:5px 0;
+        font-size: 20px;
+        background-color: $primary;
+        text-align:center;
+        color:$default;
+    }
+    .card-image{
+        width:100%;
+    }
+    .card-footer{
+        background-color: $secondary;
+        padding:5px;
+        button{
+            @include button($primary,$default,$secondary,$default);
+            width:100%;
+            display:block;
+        }
+    }
+}
+
+.btn-primary{
+    @include button($primary,$default,$accent,$default,"20px");
+}
+.btn-secondary{
+    @include button($secondary,$default,$primary,$default);
+}
+.btn-accent{
+    @include button($accent,$default,$secondary,$default);
+}
+.btn-default{
+    @include button("#ddd",$secondary,$secondary,$default);
+}
